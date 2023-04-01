@@ -3,7 +3,7 @@ import translators as ts
 import time
 #import wikipedia
 import datetime
-from main import alina_talk, alina_talk_en, alina_listen
+from main import al_talk, al_talk_en, al_listen
 
 
 
@@ -14,7 +14,7 @@ weather_api_key = 'f5624a4b08f77d74576ef4211efe8dae'
 
 
 def translator(text):
-    alina_talk_en(ts.google(text, from_language='de', to_language='en'))
+    al_talk_en(ts.google(text, from_language='de', to_language='en'))
 
 
 def get_news():
@@ -28,33 +28,33 @@ def get_news():
 
     for i in range(3):
         print(news_headlines[i])
-        alina_talk(news_headlines[i])
+        al_talk(news_headlines[i])
 
 
 def get_weather():
-    alina_talk('Kein Problem, für welche Stadt soll ich das Wetter nachsehen?')
-    weather_input = alina_listen()
+    al_talk('Kein Problem, für welche Stadt soll ich das Wetter nachsehen?')
+    weather_input = al_listen()
 
     weather_url = 'https://api.weatherbit.io/v2.0/current?city=' + weather_input + '&key=' + weather_api_key
     weather_json = requests.get(weather_url).json()
     print(weather_json)
     temperature = weather_json['data'][0]['temp']
     print(temperature)
-    alina_talk('Die Temperatur in ' + weather_input + ' beträgt ' + str(temperature) + ' Grad')
+    al_talk('Die Temperatur in ' + weather_input + ' beträgt ' + str(temperature) + ' Grad')
 
 
 def distance_info():
     # Distance API Key
     distance_api_key = '5QZwAHClpfw57RBpsynefNaQtKxUomLG'
 
-    alina_talk('Klar, was ist der Startpunkt?')
-    location_one = alina_listen()
+    al_talk('Klar, was ist der Startpunkt?')
+    location_one = al_listen()
     print(location_one)
     time.sleep(1)
-    alina_talk('Okay, und der Endpunkt?')
-    location_two = alina_listen()
+    al_talk('Okay, und der Endpunkt?')
+    location_two = al_listen()
     print(location_two)
-    alina_talk('Gib mir einen Moment. Ich nutze mein schlaues Köpfchen um es für Dich zu berechnen.')
+    al_talk('Gib mir einen Moment. Ich nutze mein schlaues Köpfchen um es für Dich zu berechnen.')
 
     dist_url = 'http://www.mapquestapi.com/directions/v2/route?key=dQSkftNrwKqZ9Xt4vcoYGQu3ORKHSGrs&from=' + location_one + '&to=' + location_two + '&unit=k'
     dist_request = requests.get(dist_url).json()
@@ -62,7 +62,7 @@ def distance_info():
     distance_result = 'Die Entfernung zwischen ' + location_one + ' und ' + location_two + ' beträgt ' + str(
         distance_km) + ' Kilometer'
     print(distance_result)
-    alina_talk(distance_result)
+    al_talk(distance_result)
 
 
 #def wikipedia_info():
@@ -80,4 +80,4 @@ def get_time_now():
     minute = today_date.strftime("%M")
     time_now = 'Es ist ' + hour + ':' + minute
     print(time_now)
-    alina_talk(time_now)
+    al_talk(time_now)

@@ -15,7 +15,7 @@ from toolss import timeit
 
 # text zur sprache konvertieren, sodass der übergebene text im audioformat ausgegeben werden kann
 @timeit
-def alina_talk(text):
+def al_talk(text):
     # erzeuge audio datei
     file_name = 'audio_data.mp3'
     # konvertiere text zu sprache
@@ -29,7 +29,7 @@ def alina_talk(text):
 
 # sprache zu text konovertieren - sodass wir den text im nächsten schritt verwenden können
 @timeit
-def alina_listen():
+def al_listen():
     r = sr.Recognizer()
 
     with sr.Microphone() as source:
@@ -54,7 +54,7 @@ def alina_listen():
 
 # englisch
 @timeit
-def alina_talk_en(text):
+def al_talk_en(text):
     # erzeuge audio datei
     file_name = 'audio_data.mp3'
     # konvertiere text zu sprache
@@ -70,12 +70,12 @@ def alina_talk_en(text):
 def execute_assistant():
     from check_replays import alina_reply
     # personalisieren
-    alina_talk('Hi, ich bin Alina und möchte Dich unterstützen. Wie ist Dein Name?')
-    listen_name = alina_listen()
-    alina_talk('Hi   ' + listen_name + ' Was kann ich für Dich tun?')
+    al_talk('Hi, ich bin Ala und möchte Dich unterstützen. Wie ist Dein Name?')
+    listen_name = al_listen()
+    al_talk('Hi   ' + listen_name + ' Was kann ich für Dich tun?')
 
     while True:
-        listen_alina = alina_listen()
+        listen_alina = al_listen()
         print(listen_alina)
         alina_reply(listen_alina)
 
